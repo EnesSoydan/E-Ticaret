@@ -1,0 +1,8 @@
+<h2>Hoş Geldin {{ request.user.username }}</h2>
+
+<form action="{% url 'logout' %}" method="post" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" style="background: none; border: none; color: #fff; cursor: pointer;">
+        Çıkış
+    </button>
+</form>

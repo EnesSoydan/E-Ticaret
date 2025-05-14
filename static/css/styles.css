@@ -1,0 +1,519 @@
+/* Ürünlerin bulunduğu konteyneri düzenleyelim */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;  /* Satırlara sarmasına izin ver */
+    gap: 20px;        /* Ürünler arasındaki mesafeyi ayarla */
+    justify-content: space-around;  /* Ürünleri eşit şekilde yay */
+    margin: 20px;
+}
+
+/* Ürünlerin her birini kutu gibi yapalım */
+.product-item {
+    width: calc(25% - 20px);  /* 4 sütun yap, 20px boşluk bırak */
+    box-sizing: border-box;   /* Padding ve border dahil al */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease-in-out;  /* Hover efekti için geçiş */
+    min-width: 200px;  /* Ürün boyutunun çok küçük olmasını engelle */
+    display: flex;
+    flex-direction: column; /* Metni ve görseli dikey hizalamak için */
+    align-items: center;  /* Ortalamak için */
+    justify-content: space-between;  /* Yükseklik boyunca eşit dağılım */
+    height: 400px;  /* Ürün kutusunun yüksekliğini sabitle */
+}
+
+.product-item:hover {
+    transform: scale(1.05);  /* Hover ile ürünün biraz büyümesini sağla */
+}
+
+/* Görselleri düzgün gösterebilmek için */
+.product-item img {
+    max-width: 100%;   /* Görselin genişliğini kutuya göre ayarla */
+    height: 200px;     /* Görselin yüksekliğini sabitle */
+    object-fit: cover; /* Görselin en-boy oranını koruyarak kutuya oturmasını sağla */
+    border-radius: 5px;
+}
+
+/* Ürün açıklamaları ve başlıkların hizalanması */
+.product-item h3, .product-item p {
+    margin: 10px 0;
+}
+
+
+.navbar {
+    background-color: #333;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between; /* LOGO sola, linkler sağa */
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar-logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-right: auto; /* EN SOLA YASLAR */
+}
+
+.navbar-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-links li {
+    margin-left: 20px;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+    color: #ff6600;
+}
+
+body {
+    margin-top: 60px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 50px auto; /* Yatayda ortalama */
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* Sayfanın dikeyde de ortalanması için aşağıdaki iki satır eklenmiştir */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.register-link {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.register-link a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+.message-container {
+    margin-top: 20px;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert.info {
+    background-color: #cce5ff;
+    color: #004085;
+}
+
+.error-message p {
+    color: #b00020;
+    background: #fdecea;
+    border: 1px solid #f5c6cb;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 5px 0 10px;
+    font-size: 14px;
+}
+
+/* Kayıt formu container'ı */
+.signup-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Başlık */
+.signup-container h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Form alanları */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+/* Şifre hataları */
+.error-message p {
+    color: #b00020;
+    background: #fdecea;
+    border: 1px solid #f5c6cb;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 5px 0 10px;
+    font-size: 14px;
+}
+
+/* Kayıt butonu */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Giriş linki */
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Ödeme Sayfası */
+.payment-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Başlık */
+.payment-container h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+/* Sepet Özeti */
+.order-summary {
+    margin-bottom: 30px;
+}
+
+.order-summary table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-summary th, .order-summary td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.order-summary th {
+    background-color: #f4f4f4;
+}
+
+/* Fatura Bilgileri */
+.billing-info h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.billing-info .form-group {
+    margin-bottom: 20px;
+}
+
+.billing-info .form-group label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+}
+
+.billing-info .form-group input,
+.billing-info .form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.billing-info .form-group input:focus,
+.billing-info .form-group select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Ödeme Butonu */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+/* Toplam Tutar */
+.order-total {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.order-total h3 {
+    font-size: 24px;
+    color: #333;
+}
+
+.order-history-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 30px;
+}
+
+.order-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.order-id {
+    font-weight: bold;
+}
+
+.order-date {
+    color: #777;
+}
+
+.order-summary {
+    margin-top: 15px;
+}
+
+.order-items {
+    list-style: none;
+    padding-left: 0;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.order-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.order-item-info {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-name {
+    font-weight: bold;
+}
+
+.item-quantity {
+    color: #555;
+}
+
+.item-price {
+    font-weight: bold;
+    color: #333;
+}
+
+.order-details-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.order-details-btn:hover {
+    background-color: #0056b3;
+}

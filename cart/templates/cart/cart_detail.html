@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 style="text-align: center;">Sepetiniz</h2>
+
+{% if cart_items %}
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        <tr style="border-bottom: 2px solid #ccc;">
+            <th style="text-align: left; padding: 10px;">Ürün</th>
+            <th>Adet</th>
+            <th>Birim Fiyat</th>
+            <th>Toplam</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart_items %}
+        <tr style="border-bottom: 1px solid #eee;">
+            <td style="display: flex; align-items: center; gap: 10px; padding: 10px;">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                <span>{{ item.product.name }}</span>
+            </td>
+            <td style="text-align: center;">{{ item.quantity }}</td>
+            <td style="text-align: center;">₺{{ item.product.price }}</td>
+            <td style="text-align: center;">₺{{ item.total_price }}</td>
+            <td style="text-align: center;">
+                <form action="{% url 'increase_quantity' item.product.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">+</button>
+                </form>
+                <form action="{% url 'decrease_quantity' item.product.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">-</button>
+                </form>
+                <form action="{% url 'remove_from_cart' item.product.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Kaldır</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr>
+<p style="text-align: right; margin-top: 20px;"><strong>Toplam Tutar:</strong> ₺{{ total_price }}</p>
+<div style="text-align: right;">
+    <a href="{% url 'payment' %}" class="button" style="padding: 10px 20px; background-color: green; color: white; text-decoration: none; border-radius: 5px;">Satın Al</a>
+</div>
+
+{% else %}
+<div style="text-align: center; margin-top: 50px;">
+    <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Boş Sepet" style="width: 120px; opacity: 0.5;" />
+    <h3 style="margin-top: 20px;">Sepetiniz boş</h3>
+    <p>Henüz sepetinize ürün eklemediniz. Hadi alışverişe başlayalım!</p>
+    <a href="{% url 'product_list' %}" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px; text-decoration: none;">Ürünlere Göz At</a>
+</div>
+{% endif %}
+
+{% endblock %}

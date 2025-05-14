@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="product-container">
+        {% for product in products %}
+            <div class="product-item">
+                <img src="{{ product.image.url }}" width="200" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>{{ product.price }} ₺</p>
+                <form action="{% url 'add_to_cart' product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Sepete Ekle</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

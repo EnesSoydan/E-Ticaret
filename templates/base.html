@@ -1,0 +1,62 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiTıkla</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="/" class="navbar-logo">BiTıkla</a>
+        <ul class="navbar-links">
+            <li><a href="/products/">Ana Sayfa</a></li>
+            <li><a href="/cart/">Sepet</a></li>
+            
+            <!-- Eğer kullanıcı giriş yapmışsa, Siparişlerim linkini göster -->
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'order_history' %}">Siparişlerim</a></li>
+            {% endif %} 
+
+            <!-- Eğer kullanıcı giriş yapmamışsa, Giriş Yap butonunu göster -->
+            {% if not request.user.is_authenticated %}
+                <li>
+                    <form action="{% url 'login' %}" method="get">
+                        <button type="submit">Giriş Yap</button>
+                    </form>
+                </li>
+            {% else %}
+                <!-- Eğer kullanıcı giriş yapmışsa, çıkış yap butonunu göster -->
+                <li>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Çıkış Yap</button>
+                    </form>
+                </li>
+            {% endif %}
+            
+            <!-- Eğer kullanıcı giriş yapmamışsa, Kayıt Ol butonunu göster -->
+            {% if not request.user.is_authenticated %}
+                <li>
+                    <form action="{% url 'signup' %}" method="get">
+                        <button type="submit">Kayıt Ol</button>
+                    </form>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!-- Sayfa içeriği -->
+{% block content %}
+
+{% endblock %}
+
+</body>
+</html>

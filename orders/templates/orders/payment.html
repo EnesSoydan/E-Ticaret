@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 900px; margin: auto; padding: 40px 20px;">
+    <h2 style="text-align: center; margin-bottom: 30px;">Ödeme Sayfası</h2>
+
+    <div style="border: 1px solid #ccc; border-radius: 10px; padding: 20px; background-color: #fafafa;">
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="border-bottom: 2px solid #ddd;">
+                    <th style="text-align: left; padding: 10px;">Ürün</th>
+                    <th>Adet</th>
+                    <th>Toplam</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 10px; display: flex; align-items: center; gap: 15px;">
+                        <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                        <div>
+                            <strong>{{ item.product.name }}</strong><br>
+                            <small>₺{{ item.product.price }}</small>
+                        </div>
+                    </td>
+                    <td style="text-align: center;">{{ item.quantity }}</td>
+                    <td style="text-align: center;">₺{{ item.total_price }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div style="text-align: right; margin-top: 30px;">
+            <h3 style="margin-bottom: 10px;">Toplam: <span style="color: green;">₺{{ total_price }}</span></h3>
+            <form method="post" action="{% url 'order_complete' %}">
+                {% csrf_token %}
+                <button type="submit" style="padding: 12px 30px; background-color: #28a745; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">
+                    <i class="fa fa-lock" style="margin-right: 8px;"></i> Ödemeyi Tamamla
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
